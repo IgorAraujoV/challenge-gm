@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 function Point({ user }) {
   return (
-    <Container>
+    <Container key={`${user.coordinates.lat}`}>
       <img src={user.avatar} alt="user-avatar" />
     </Container>
   );

@@ -22,6 +22,10 @@ export const Container = styled.div`
 
   overflow-x: hidden;
   scroll-behavior: smooth;
+
+  @media (max-width: 600px) {
+    max-height: 450px;
+  }
 `;
 
 export const Repos = styled.ul`
@@ -44,6 +48,7 @@ export const Repos = styled.ul`
     img {
       width: 30px;
       border-radius: 50%;
+      background: #e0e0e0;
     }
 
     div {
@@ -63,6 +68,7 @@ export const Repos = styled.ul`
     span {
       color: #888;
       font-size: 12px;
+      margin-top: 3px;
     }
   }
   li:first-child {

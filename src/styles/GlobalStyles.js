@@ -34,7 +34,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: linear-gradient(to bottom right, #acf25e, #8BB03E)
+    background: #acf25e;
   }
 
 `;

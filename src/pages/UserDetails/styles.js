@@ -16,6 +16,11 @@ export const Grid = styled.div`
   padding: 10px;
   max-height: 100vh;
   width: 100vw;
+
+  @media (max-width: 600px) {
+    grid-template-columns: auto;
+    grid-template-rows: auto 500px;
+  }
 `;
 
 export const Content = styled.div`
@@ -122,4 +127,8 @@ export const MapContainer = styled.div`
 
   display: flex;
   width: 100%;
+
+  @media (max-width: 600px) {
+    margin: 10px 0;
+  }
 `;

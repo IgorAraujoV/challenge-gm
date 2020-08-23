@@ -3,21 +3,7 @@ const INITIAL_STATE = {
   success: false,
   error: false,
 
-  users: [
-    {
-      avatar: 'https://avatars3.githubusercontent.com/u/45022624?v=4',
-      bio: 'Developer React JS | React Native | Node JS',
-      coordinates: {
-        lat: -3.7327144,
-        lng: -38.5269981,
-      },
-      id: 45022624,
-      location: 'Fortaleza - CE',
-      login: 'IgorAraujoV',
-      name: 'Igor Araujo',
-      url: 'https://github.com/IgorAraujoV',
-    },
-  ],
+  users: [],
 };
 
 export default function user(state = INITIAL_STATE, action) {

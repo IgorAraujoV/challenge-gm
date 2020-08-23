@@ -8,7 +8,7 @@ import Point from '../Point';
 const TOKEN =
   'pk.eyJ1IjoiaWdvcmFyYXVqb2RldiIsImEiOiJja2UzZXJvOGMwaWszMnVueWVvY3ZhaWg0In0.cJzfgT5p_iZDFxp_tPcqRQ';
 
-function Map() {
+function Map({ user }) {
   const users = useSelector(state => {
     return state.user.users;
   });
@@ -16,8 +16,8 @@ function Map() {
   const [coordinates, setCoordinates] = useState({
     width: '100%',
     height: '100%',
-    latitude: -3.8545309,
-    longitude: -38.5735246,
+    latitude: user.coordinates.lat,
+    longitude: user.coordinates.lng,
     zoom: 4,
   });
 
@@ -49,7 +49,7 @@ function Map() {
       >
         {users.map(user => (
           <Marker
-            key={1}
+            key={user.id}
             latitude={user.coordinates.lat}
             longitude={user.coordinates.lng}
             offsetLeft={-20}

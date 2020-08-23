@@ -3,103 +3,24 @@ import React from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import { Container, Repos, Star } from './styles';
 
-function RepositoriesList() {
+function RepositoriesList({ user }) {
   return (
     <Container>
       <Repos>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-          <Star>
-            <FaRegStar size={20} color="#e6e602" />
-          </Star>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
-        <li>
-          <img
-            src="https://avatars0.githubusercontent.com/u/59940233?v=4"
-            alt="1"
-          />
-          <div>
-            <strong>tituto de um repo legal</strong>
-            <span>Dono do repo</span>
-          </div>
-        </li>
+        {user.starredRepos.map((repo, index) => (
+          <li key={`${repo.id}${user.id}`}>
+            <img src={repo.owner.avatar_url} alt={`avatar-${index}`} />
+            <div>
+              <strong>{repo.name}</strong>
+              <span>
+                {repo.owner.name ? repo.owner.name : repo.owner.login}
+              </span>
+            </div>
+            <Star>
+              <FaRegStar size={20} color="#e6e602" />
+            </Star>
+          </li>
+        ))}
       </Repos>
     </Container>
   );

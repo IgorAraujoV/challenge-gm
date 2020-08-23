@@ -6,10 +6,10 @@ import UserDetails from './pages/UserDetails';
 
 export default function Routes() {
   return (
-    <BrowserRouter >
-      <Switch >
+    <BrowserRouter>
+      <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/details" component={UserDetails} />
+        <Route path="/details/:userId" component={UserDetails} />
       </Switch>
     </BrowserRouter>
   );
