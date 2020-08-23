@@ -29,6 +29,10 @@ export default createGlobalStyle`
     --green-darken: #8BB03E;
   }
 
+  ul {
+    list-style: none;
+  }
+
   body {
     background: linear-gradient(to bottom right, #acf25e, #8BB03E)
   }

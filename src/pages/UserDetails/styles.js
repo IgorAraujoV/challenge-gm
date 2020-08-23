@@ -91,7 +91,7 @@ export const Header = styled.header`
 `;
 
 export const ProfileButton = styled.a`
-  height: 30px;
+  min-height: 30px;
   color: var(--green-darken);
   background: transparent;
   border: 1px solid var(--green-darken);

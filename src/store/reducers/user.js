@@ -2,34 +2,21 @@ const INITIAL_STATE = {
   loading: false,
   success: false,
   error: false,
+
   users: [
-    // {
-    //   id: 16665625,
-    //   login: "naeliofreires",
-    //   node_id: "MDQ6VXNlcjE2NjY1NjI1",
-    //   avatar_url: "https://avatars0.githubusercontent.com/u/16665625?v=4",
-    //   gravatar_id: "",
-    //   url: "https://api.github.com/users/naeliofreires",
-    //   html_url: "https://github.com/naeliofreires",
-    //   followers_url: "https://api.github.com/users/naeliofreires/followers",
-    //   following_url: "https://api.github.com/users/naeliofreires/following{/other_user}",
-    //   gists_url: "https://api.github.com/users/naeliofreires/gists{/gist_id}",
-    //   starred_url: "https://api.github.com/users/naeliofreires/starred{/owner}{/repo}",
-    //   subscriptions_url: "https://api.github.com/users/naeliofreires/subscriptions",
-    //   organizations_url: "https://api.github.com/users/naeliofreires/orgs",
-    //   repos_url: "https://api.github.com/users/naeliofreires/repos",
-    //   events_url: "https://api.github.com/users/naeliofreires/events{/privacy}",
-    //   received_events_url: "https://api.github.com/users/naeliofreires/received_events",
-    //   type: "User",
-    //   site_admin: false,
-    //   name: "Naélio Freires",
-    //   company: "@Esportudo",
-    //   blog: "https://www.linkedin.com/in/naeliofreires/",
-    //   location: "Fortaleza - CE",
-    //   email: null,
-    //   hireable: null,
-    //   bio: "Desenvolvedor Desktop | Mobile | Web. Sempre em busca de novos conhecimentos, experiências e tecnologias.\r\n "
-    // }
+    {
+      avatar: 'https://avatars3.githubusercontent.com/u/45022624?v=4',
+      bio: 'Developer React JS | React Native | Node JS',
+      coordinates: {
+        lat: -3.7327144,
+        lng: -38.5269981,
+      },
+      id: 45022624,
+      location: 'Fortaleza - CE',
+      login: 'IgorAraujoV',
+      name: 'Igor Araujo',
+      url: 'https://github.com/IgorAraujoV',
+    },
   ],
 };
 
