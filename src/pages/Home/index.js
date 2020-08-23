@@ -30,14 +30,12 @@ function Home() {
   }, [users]);
 
   useEffect(() => {
-    console.log('error, show toast: ', error);
     if (error) toast.error('Usuário não encontrado!');
   }, [error]);
 
   function goToDetails(userId) {
     history.push(`/details/${userId}`);
   }
-  // var users = useSelector(state => state.user)
 
   function handleInputChange(event) {
     setUsername(event.target.value);
@@ -45,6 +43,11 @@ function Home() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (users.find(user => user.login === username)) {
+      toast.warning('Usuário já adicionado');
+      return;
+    }
+
     dispatch(addUserRequest(username));
   }
 
