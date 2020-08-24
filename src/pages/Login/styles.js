@@ -11,12 +11,14 @@ const rotate = keyframes`
 
 export const Container = styled.div`
   height: 100%;
+
+  padding-top: 50px;
 `;
 
 export const Content = styled.div`
   width: 600px;
 
-  margin: 30px auto 0;
+  margin: 0 auto;
   padding: 20px;
 
   background: #fff;
@@ -27,6 +29,7 @@ export const Content = styled.div`
 
   > form {
     display: flex;
+    flex-direction: column;
     margin-top: 20px;
   }
 
@@ -35,9 +38,10 @@ export const Content = styled.div`
     border-radius: 5px;
     padding: 10px;
     width: 100%;
+    margin-top: 5px;
 
     &::placeholder {
-      color: #bbb;
+      color: #aaa;
       letter-spacing: 0.2px;
     }
   }
@@ -59,14 +63,14 @@ export const Content = styled.div`
 export const Title = styled.h1`
   display: flex;
   align-items: center;
-  font-size: 25px;
+  justify-content: center;
 
   > svg {
     margin-right: 10px;
   }
 
   @media (max-width: 600px) {
-    font-size: 25px;
+    font-size: 28px;
   }
 `;
 
@@ -80,9 +84,14 @@ export const SubmitButton = styled.button.attrs(props => ({
 
   display: flex;
   align-items: center;
-  padding: 0 10px;
-  margin-left: 10px;
   justify-content: center;
+
+  margin-top: 15px;
+  padding: 10px 10px;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
 
   &:hover {
     background: #719e3f;
@@ -94,6 +103,10 @@ export const SubmitButton = styled.button.attrs(props => ({
     cursor: not-allowed;
   }
 
+  svg {
+    margin-left: 15px;
+  }
+
   ${props =>
     props.isLoading &&
     css`
@@ -101,76 +114,4 @@ export const SubmitButton = styled.button.attrs(props => ({
         animation: ${rotate} 1s linear infinite;
       }
     `}
-`;
-
-export const Users = styled.ul`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  margin-top: 10px;
-
-  li {
-    margin-top: 10px;
-    padding-top: 10px;
-    display: flex;
-    align-items: center;
-    width: 100%;
-
-    border-top: 1px solid #eee;
-
-    img {
-      width: 30px;
-      border-radius: 50%;
-      background: #e0e0e0;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-
-      margin-left: 5px;
-    }
-    strong {
-      font-size: 14px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      color: #333;
-    }
-
-    span {
-      color: #888;
-      font-size: 12px;
-      margin-top: 3px;
-    }
-  }
-  li:first-child {
-    border: 0;
-    margin-top: 0;
-  }
-`;
-
-export const DetailsButton = styled.button`
-  color: var(--green-darken);
-  background: transparent;
-  border: 1px solid var(--green-darken);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 5px;
-
-  font-size: 12px;
-  font-weight: 500;
-
-  padding: 5px 10px;
-
-  transition: background 0.3s;
-
-  &:hover {
-    background: #f5ffeb;
-  }
 `;

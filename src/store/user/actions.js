@@ -24,3 +24,9 @@ export function addUserError(username) {
     },
   };
 }
+
+export function clearUsers() {
+  return {
+    type: 'CLEAR_USERS',
+  };
+}

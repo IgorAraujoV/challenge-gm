@@ -2,29 +2,40 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  height: 100%;
+  max-height: 100vh;
 `;
 
 export const Grid = styled.div`
   display: grid;
 
-  grid-template-areas: 'PROFILE' 'MAP';
+  grid-template-areas:
+    'H H'
+    'PROF MAP';
   grid-template-columns: 300px auto;
-  grid-template-rows: 100%;
+  grid-template-rows: 70px calc(100vh - 70px);
 
   grid-column-gap: 15px;
-  padding: 10px;
-  max-height: 100vh;
-  width: 100vw;
+  max-height: 100%;
+  width: 100%;
 
   @media (max-width: 600px) {
+    grid-template-areas:
+      'H'
+      'PROF'
+      'MAP';
     grid-template-columns: auto;
-    grid-template-rows: auto 500px;
+    grid-template-rows: 65px auto 500px;
   }
 `;
 
+export const HeaderContainer = styled.div`
+  grid-area: H;
+
+  width: 100%;
+`;
+
 export const Content = styled.div`
-  grid-area: 'PROFILE';
+  grid-area: PROF;
 
   background: #fff;
   border-radius: 8px;
@@ -32,7 +43,9 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
-  height: 100%;
+  max-height: 100%;
+
+  margin: 0 0 10px 10px;
 
   > span {
     color: #aaa;
@@ -48,6 +61,10 @@ export const Content = styled.div`
     letter-spacing: 0.16px;
 
     margin: 5px 15px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 0 10px;
   }
 `;
 
@@ -123,12 +140,16 @@ export const ProfileButton = styled.a`
 `;
 
 export const MapContainer = styled.div`
-  grid-area: 'MAP';
+  grid-area: MAP;
 
   display: flex;
   width: 100%;
+  height: 100%;
+
+  padding: 0 10px 10px 0;
 
   @media (max-width: 600px) {
     margin: 10px 0;
+    padding: 10px;
   }
 `;

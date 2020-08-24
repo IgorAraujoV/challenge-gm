@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 30px;
 
   img {
+    border: ${props => (props.logged ? '2px solid var(--green-darken)' : 0)};
     width: 100%;
 
     border-radius: 50%;

@@ -1,31 +1,38 @@
 import { call, put, all } from 'redux-saga/effects';
 
 import axios from 'axios';
-import { addUserSuccess, addUserError } from './actions';
+import { loginSuccess, loginError } from './actions';
 
 async function getCoordinates(location) {
-  console.log('Enter getCoordinates');
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_KEY}`;
   const response = await axios.get(url);
 
   if (response.status >= 400) return null;
 
-  console.log('Out getCoordinates');
   return response.data.results[0].geometry.location;
 }
 
 async function getStarredRepositories(username) {
-  console.log('Enter getRepos');
   const response = await axios.get(
     `https://api.github.com/users/${username}/starred`
   );
-  console.log('Out getRepos');
-  return response.data;
+
+  const repositories = response.data.map(repo => ({
+    name: repo.name,
+    id: repo.id,
+    owner: {
+      login: repo.owner.login,
+      name: repo.owner.name,
+      avatar: repo.owner.avatar_url,
+      id: repo.owner.id,
+    },
+  }));
+
+  return repositories;
 }
 
-export function* addUserRequest(action) {
+export function* loginRequest(action) {
   try {
-    console.log('Enter addUserRequest');
     const response = yield call(
       axios.get,
       `https://api.github.com/users/${action.payload.username}`
@@ -47,10 +54,8 @@ export function* addUserRequest(action) {
       starredRepos,
     };
 
-    console.log('Out addUserRequest');
-    yield put(addUserSuccess(user));
+    yield put(loginSuccess(user));
   } catch (error) {
-    console.log('addUserRequestError');
-    yield put(addUserError(action.payload.username));
+    yield put(loginError());
   }
 }

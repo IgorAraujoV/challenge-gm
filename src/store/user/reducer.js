@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 export default function user(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'ADD_USER_REQUEST':
-      console.log('request');
       return { ...state, loading: true, error: false, success: false };
     case 'ADD_USER_SUCCESS':
       return {
@@ -21,6 +20,8 @@ export default function user(state = INITIAL_STATE, action) {
       };
     case 'ADD_USER_ERROR':
       return { ...state, loading: false, error: true, success: false };
+    case 'CLEAR_USERS':
+      return { ...state, users: [] };
     default:
       return state;
   }

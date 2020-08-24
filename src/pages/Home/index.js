@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
-
 import { FaGithubAlt, FaSearch, FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUserRequest } from '../../store/user/actions';
 import {
@@ -15,6 +13,7 @@ import {
   Users,
   DetailsButton,
 } from './styles';
+import Header from '../../components/Header';
 
 function Home() {
   const [username, setUsername] = useState('');
@@ -25,6 +24,8 @@ function Home() {
   const error = useSelector(state => state.user.error);
   const users = useSelector(state => state.user.users);
 
+  const userLogged = useSelector(state => state.auth.user);
+
   useEffect(() => {
     setUsername('');
   }, [users]);
@@ -32,6 +33,8 @@ function Home() {
   useEffect(() => {
     if (error) toast.error('Usuário não encontrado!');
   }, [error]);
+
+  if (!userLogged) return <Redirect to="/" />;
 
   function goToDetails(userId) {
     history.push(`/details/${userId}`);
@@ -43,6 +46,11 @@ function Home() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (userLogged.login.toLowerCase() === username.toLowerCase()) {
+      toast.info('Não é possível adicionar o usuário já logado.');
+      return;
+    }
     if (users.find(user => user.login === username)) {
       toast.warning('Usuário já adicionado');
       return;
@@ -53,10 +61,11 @@ function Home() {
 
   return (
     <Container>
+      <Header showButton goToDetails={goToDetails} />
       <Content>
         <Title>
           <FaGithubAlt />
-          Finder
+          Usuários
         </Title>
 
         <form onSubmit={handleSubmit}>
@@ -64,7 +73,7 @@ function Home() {
             type="text"
             value={username}
             onChange={handleInputChange}
-            placeholder="Digite seu nome de usuário do GitHub"
+            placeholder="Digite o nome do usuário no GitHub"
           />
           <SubmitButton isLoading={isLoading ? 1 : 0}>
             {isLoading ? (

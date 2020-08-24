@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -11,29 +11,37 @@ import {
   ProfileButton,
   MapContainer,
   Grid,
+  HeaderContainer,
 } from './styles';
 import Map from '../../components/Map';
+import HeaderComponent from '../../components/Header';
 import RepositoriesList from '../../components/RepositoriesList';
 
 function UserDetails() {
   const [goBack, setGoBack] = useState(false);
-  const history = useHistory();
   const { userId } = useParams();
 
   const users = useSelector(state => {
     return state.user.users;
   });
 
-  if (users.length === 0 || goBack) return <Redirect to="/" />;
+  const userLogged = useSelector(state => {
+    return state.auth.user;
+  });
 
-  const user = users.filter(userItem => userItem.id === Number(userId))[0];
+  if ((users.length === 0 && !userLogged) || goBack)
+    return <Redirect to="/home" />;
 
-  console.log('de novo');
-  console.log('goback:', goBack);
+  let user = users.filter(userItem => userItem.id === Number(userId))[0];
+
+  if (!user) user = userLogged;
 
   return (
     <Container>
       <Grid>
+        <HeaderContainer>
+          <HeaderComponent />
+        </HeaderContainer>
         <Content>
           <Header>
             <button
@@ -54,7 +62,7 @@ function UserDetails() {
             Visitar perfil
             <FaArrowRight size={13} color="#719e3f" />
           </ProfileButton>
-          <span>REPOSITÓRIOS FAVORITADOS:</span>
+          {!!user.starredRepos.length && <span>REPOSITÓRIOS FAVORITADOS:</span>}
           <RepositoriesList user={user} />
         </Content>
         <MapContainer>

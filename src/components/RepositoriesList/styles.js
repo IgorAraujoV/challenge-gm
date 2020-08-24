@@ -23,6 +23,8 @@ export const Container = styled.div`
   overflow-x: hidden;
   scroll-behavior: smooth;
 
+  max-height: 100%;
+
   @media (max-width: 600px) {
     max-height: 450px;
   }

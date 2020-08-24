@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import MapGL, { Marker } from 'react-map-gl';
 
 import { useSelector } from 'react-redux';
@@ -13,6 +13,10 @@ function Map({ user }) {
     return state.user.users;
   });
 
+  const userLogged = useSelector(state => {
+    return state.auth.user;
+  });
+
   const [coordinates, setCoordinates] = useState({
     width: '100%',
     height: '100%',
@@ -21,17 +25,6 @@ function Map({ user }) {
     zoom: 4,
   });
 
-  // useEffect(() => {
-  //   if (!mapRef.current) return;
-
-  //   const map = new mapboxgl.Map({
-  //     container: mapRef.current,
-  //     style: 'mapbox://styles/mapbox/streets-v11',
-
-  //     center: [coordinates.lng, coordinates.lat],
-  //     zoom: coordinates.zoom,
-  //   });
-  // }, [coordinates]);
   return (
     <Container>
       <MapGL
@@ -47,6 +40,15 @@ function Map({ user }) {
         }}
         // onClick={() => this.showModal()}
       >
+        <Marker
+          key={userLogged.id}
+          latitude={userLogged.coordinates.lat}
+          longitude={userLogged.coordinates.lng}
+          offsetLeft={-20}
+          offsetTop={-10}
+        >
+          <Point user={userLogged} logged />
+        </Marker>
         {users.map(user => (
           <Marker
             key={user.id}
